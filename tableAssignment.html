@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+  </head>
+  <body>
+    <!-- User Inputs -->
+    <div id="details">
+      <input type="text" id="company" placeholder="company name" />
+      <input type="email" id="email" placeholder="email" />
+      <input type="text" id="phone" placeholder="phone number" />
+      <input type="text" id="location" placeholder="location" />
+      <button type="submit" id="button">Add</button>
+    </div>
+    <!-- Container Div -->
+    <div id="content"></div>
+    <!-- Remove button -->
+    <div style="margin-top: 20px">
+      <button type="button" id="remove">Remove</button>
+    </div>
+
+    <script>
+      // Fetching user inputs
+      const getDetails = () => {
+        let name = document.getElementById("company").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let phone = document.getElementById("phone").value.trim();
+        let location = document.getElementById("location").value.trim();
+        companies.push({ name, email, phone, location });
+        document.getElementById("content").innerHTML = `<table>
+<tr>
+  <th>SN</th>
+  <th>Comapny Name</th>
+  <th>Company Email</th>
+  <th>Company Phone</th>
+  <th>Location</th>
+</tr>
+<tbody>
+    ${companies.map(
+      (x, i) => `<tr><td>${i + 1}</td>
+    <td>${x.name}</td>
+    <td>${x.email}</td>
+    <td>${x.phone}</td>
+    <td>${x.location}</td> </tr>`
+    )}
+</tbody>
+</table>`;
+      };
+      // Removing inputs or Details
+      const removeDetails = () => {
+        companies.pop();
+        document.getElementById("content").innerHTML = `<table>
+<tr>
+  <th>SN</th>
+  <th>Comapny Name</th>
+  <th>Company Email</th>
+  <th>Company Phone</th>
+  <th>Location</th>
+</tr>
+<tbody>
+    ${companies.map(
+      (x, i) => `<tr><td>${i + 1}</td>
+    <td>${x.name}</td>
+    <td>${x.email}</td>
+    <td>${x.phone}</td>
+    <td>${x.location}</td> </tr>`
+    )}
+</tbody>
+</table>`;
+      };
+      // Add Button
+      let button = document.getElementById("button");
+      button.addEventListener("click", getDetails);
+      //Remove Button
+      let removeDetail = document.getElementById("remove");
+      removeDetail.addEventListener("click", removeDetails);
+      // Little Guy Database
+      let companies = [
+        {
+          name: "Google",
+          email: "malik@google.com",
+          phone: "08000000000",
+          location: "USA",
+        },
+        {
+          name: "Facebook",
+          email: "malik@facebook.com",
+          phone: "08000223400",
+          location: "Ghana",
+        },
+        {
+          name: "Amazon",
+          email: "malik@amazon.com",
+          phone: "087770000000",
+          location: "Togo",
+        },
+        {
+          name: "Martreach",
+          email: "malik@martreach.com",
+          phone: "0800099000",
+          location: "Belgium",
+        },
+        {
+          name: "Martreach",
+          email: "malik@martreach.com",
+          phone: "0800099000",
+          location: "Belgium",
+        },
+        {
+          name: "Martreach",
+          email: "malik@martreach.com",
+          phone: "0800099000",
+          location: "Belgium",
+        },
+      ];
+    </script>
+  </body>
+</html>
