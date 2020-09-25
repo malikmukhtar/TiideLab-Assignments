@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Method</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Baloo Tammudu 2";
+        margin: 10px;
+        background-color: rgb(220, 220, 220);
+      }
+      button {
+        font-family: "Baloo Tammudu 2";
+      }
+      form {
+        margin: 10px;
+      }
+      form input {
+        font-family: "Baloo Tammudu 2";
+        margin: 2px;
+      }
+      .content {
+        display: grid;
+        grid-template-columns: auto auto auto;
+      }
+
+      .button {
+        display: flex;
+        flex-direction: row;
+      }
+      button {
+        margin: 2px;
+      }
+      img {
+        border-radius: 36% 64% 70% 30% / 45% 18% 82% 55%;
+      }
+      .profile {
+        /* background-color: rgb(168, 168, 168); */
+        margin: 12px;
+        width: max-content;
+      }
+
+      @media screen and (max-width: 320px) {
+        .content {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- User Inputs -->
+    <div id="details">
+      <form id="form">
+        <input type="text" id="company" placeholder="company name" required />
+        <input type="email" id="email" placeholder="email" required />
+        <input type="text" id="phone" placeholder="phone number" required />
+        <input type="text" id="location" placeholder="location" required />
+        <button type="submit" id="addButton">Add</button>
+      </form>
+    </div>
+    <!-- Container Div -->
+    <div id="content" class="content"></div>
+
+    <script>
+      // Getting from local storage
+      profiles = JSON.parse(localStorage.getItem("profiles"));
+
+      // Creates new local storage
+      if (profiles == null) {
+        profiles = [];
+      }
+      const getDetails = (e) => {
+        e.preventDefault();
+        let name = document.getElementById("company").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let phone = document.getElementById("phone").value.trim();
+        let location = document.getElementById("location").value.trim();
+        profiles.push({ name, email, phone, location });
+        // Adding details to local storage
+        localStorage.setItem("profiles", JSON.stringify(profiles));
+        display();
+        document.getElementById("form").reset();
+      };
+
+      //Adding Details
+      let addButton = document.getElementById("addButton");
+      addButton.addEventListener("click", getDetails);
+
+      let display = () => {
+        document.getElementById("content").innerHTML = profiles
+          .map(
+            (x, i) =>
+              `<div class='profile'><span>${
+                i + 1
+              }</span><div><img src="https://picsum.photos/200" alt="${
+                x.name
+              }">    
+              </div><div>${x.name}</div><div>${x.email}</div><div>${
+                x.phone
+              }</div><div>${x.location}</div><div class='button'>
+                <div><button onClick='deleteUser(${i})'>Delete</button></div>
+                <button onClick='editProfile(${i})'>Edit</button>
+              </div></div>`
+          )
+          .join("");
+      };
+      //Deleting User
+      let deleteUser = (id) => {
+        let confirmDelete = confirm("Confirm Delete");
+        if (confirmDelete) {
+          profiles.splice(id, 1);
+          display();
+          localStorage.setItem("profiles", JSON.stringify(profiles));
+        }
+      };
+      //Edit User
+      let editProfile = (id) => {
+        console.log("clicked");
+        editUser = {
+          name: prompt("Enter Your Full Name:", profiles[id].name),
+          email: prompt("Enter Your Email Address:", profiles[id].email),
+          phone: Number(prompt("Enter Your Phone Number:", profiles[id].phone)),
+          location: prompt("location", profiles[id].location),
+        };
+        if (
+          editUser.location != null &&
+          editUser.name != null &&
+          editUser.email != null &&
+          editUser.phone != null
+        ) {
+          profiles[id] = editUser;
+          localStorage.setItem("profiles", JSON.stringify(profiles));
+        }
+        display();
+      };
+    </script>
+  </body>
+</html>

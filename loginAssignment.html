@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register and login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Baloo Tammudu 2";
+        background-color: rgb(220, 220, 220);
+        display: flex;
+        padding: 50px;
+      }
+      button {
+        font-family: "Baloo Tammudu 2";
+      }
+      input {
+        font-family: "Baloo Tammudu 2";
+        margin: 2px;
+      }
+      .login {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .login button {
+        width: max-content;
+      }
+      .right {
+        height: 80vh;
+        width: 70%;
+        background-color: red;
+        background-image: url("https://images.unsplash.com/photo-1535762978982-79119ca47447?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=335&q=80");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .register {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        justify-content: center;
+      }
+      .left {
+        display: flex;
+        align-items: center;
+        /* padding: 20px; */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Love Birds</h1>
+    <div class="right"></div>
+    <div class="left">
+      <div class="login">
+        <span>Sign in</span>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button type="submit" id="login">Log in</button>
+      </div>
+      <div class="register">
+        <span>Register</span>
+        <input type="text" id="fullname" placeholder="Full Name" />
+        <input type="text" id="register-username" placeholder="Username" />
+        <input type="email" id="email" placeholder="Email Address" />
+        <input type="text" id="phonenumber" placeholder="Phone Number" />
+        <input type="file" id="picture" />
+        <input
+          type="password"
+          id="register-password"
+          placeholder="Create Password"
+        />
+        <input
+          type="password"
+          id="register-c-password"
+          placeholder="Confirm Password"
+        />
+        <button type="submit" id="register">Register</button>
+      </div>
+    </div>
+
+    <script src="js/loginAssignment.js"></script>
+  </body>
+</html>

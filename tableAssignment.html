@@ -8,10 +8,10 @@
   <body>
     <!-- User Inputs -->
     <div id="details">
-      <input type="text" id="company" placeholder="company name" />
-      <input type="email" id="email" placeholder="email" />
-      <input type="text" id="phone" placeholder="phone number" />
-      <input type="text" id="location" placeholder="location" />
+      <input type="text" id="company" placeholder="company name" required />
+      <input type="email" id="email" placeholder="email" required />
+      <input type="text" id="phone" placeholder="phone number" required />
+      <input type="text" id="location" placeholder="location" required />
       <button type="submit" id="button">Add</button>
     </div>
     <!-- Container Div -->
@@ -60,13 +60,15 @@
   <th>Location</th>
 </tr>
 <tbody>
-    ${companies.map(
-      (x, i) => `<tr><td>${i + 1}</td>
+    ${companies
+      .map(
+        (x, i) => `<tr><td>${i + 1}</td>
     <td>${x.name}</td>
     <td>${x.email}</td>
     <td>${x.phone}</td>
     <td>${x.location}</td> </tr>`
-    )}
+      )
+      .join("")}
 </tbody>
 </table>`;
       };
@@ -77,44 +79,7 @@
       let removeDetail = document.getElementById("remove");
       removeDetail.addEventListener("click", removeDetails);
       // Little Guy Database
-      let companies = [
-        {
-          name: "Google",
-          email: "malik@google.com",
-          phone: "08000000000",
-          location: "USA",
-        },
-        {
-          name: "Facebook",
-          email: "malik@facebook.com",
-          phone: "08000223400",
-          location: "Ghana",
-        },
-        {
-          name: "Amazon",
-          email: "malik@amazon.com",
-          phone: "087770000000",
-          location: "Togo",
-        },
-        {
-          name: "Martreach",
-          email: "malik@martreach.com",
-          phone: "0800099000",
-          location: "Belgium",
-        },
-        {
-          name: "Martreach",
-          email: "malik@martreach.com",
-          phone: "0800099000",
-          location: "Belgium",
-        },
-        {
-          name: "Martreach",
-          email: "malik@martreach.com",
-          phone: "0800099000",
-          location: "Belgium",
-        },
-      ];
+      let companies = [];
     </script>
   </body>
 </html>
