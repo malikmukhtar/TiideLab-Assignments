@@ -67,6 +67,12 @@
         <button type="submit" id="addButton">Add</button>
       </form>
     </div>
+    <div>
+      <input type="text" id="search" />
+      <button id="singleSearch">Search one</button>
+      <button id="multipleSearch">Search All</button>
+    </div>
+    <p id="searchResult"></p>
     <!-- Container Div -->
     <div id="content" class="content"></div>
 
@@ -78,6 +84,7 @@
       if (profiles == null) {
         profiles = [];
       }
+
       const getDetails = (e) => {
         e.preventDefault();
         let name = document.getElementById("company").value.trim();
@@ -142,6 +149,43 @@
         }
         display();
       };
+      // Searching single Output
+      const getSingleSearch = () => {
+        let searchInput = document.getElementById("search").value;
+        let profile = profiles.find(
+          (x) => x.name.toLowerCase() == searchInput.toLowerCase()
+        );
+        profiles = [];
+        profiles.push(profile);
+        document.getElementById("searchResult").innerHTML = "1 record found";
+        display();
+      };
+      //Searching Multiple Output
+      const getMultipleSearch = () => {
+        let searchInput = document.getElementById("search").value;
+        filteredProfiles = profiles.filter((x) =>
+          x.name.toLowerCase().includes(searchInput)
+        );
+
+        profiles = filteredProfiles;
+        if (profiles == null || profiles == undefined || profiles.length == 0) {
+          alert("No record found for " + searchInput);
+        } else {
+          display();
+        }
+        profiles.length == 1
+          ? (document.getElementById("searchResult").innerHTML =
+              profiles.length + " record found")
+          : (document.getElementById("searchResult").innerHTML =
+              profiles.length + " records found");
+      };
+      //Getting Search Button
+      document
+        .getElementById("singleSearch")
+        .addEventListener("click", getSingleSearch);
+      document
+        .getElementById("multipleSearch")
+        .addEventListener("click", getMultipleSearch);
     </script>
   </body>
 </html>

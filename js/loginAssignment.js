@@ -28,6 +28,7 @@ const registerUser = () => {
     //Adding database to localstorage
 
     localStorage.setItem("database", JSON.stringify(database));
+    document.getElementById("form").reset();
   } else {
     alert("Password Mismatch");
   }
