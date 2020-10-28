@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Video</title>
+</head>
+<body>
+    
+    <script>
+
+
+        async function loadVideo(){
+            const response = await fetch('https://api.github.com/users/malikmukhtar')
+            const data = await response.json()
+
+            console.log(data)
+        }
+
+        loadVideo()
+    </script>
+</body>
+</html>
