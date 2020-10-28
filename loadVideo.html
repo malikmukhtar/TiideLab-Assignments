@@ -7,14 +7,28 @@
 </head>
 <body>
     
+    <video width="400" controls>
+        <source src="cc" type="video/ogg" id="video">
+        Your browser does not support HTML video.
+      </video>
     <script>
 
 
         async function loadVideo(){
-            const response = await fetch('https://api.github.com/users/malikmukhtar')
-            const data = await response.json()
-
-            console.log(data)
+            await fetch("https://tiktok4.p.rapidapi.com/feed/by_id?min_cursor=1579264117000&max_cursor=1585818603000&user_id=107955", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "tiktok4.p.rapidapi.com",
+		"x-rapidapi-key": "e97d5fa5b0mshe8fc5d05f17595cp149f17jsnf9212df87945"
+	}
+})
+.then(response => {
+    document.getElementById('video').src = response.url
+	
+})
+.catch(err => {
+	console.log(err);
+});
         }
 
         loadVideo()
